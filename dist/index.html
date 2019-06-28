@@ -17,24 +17,66 @@
 
 <body>
 
-		<nav class="navbar is-white topNav">
-				<div class="container">
-					<div class="navbar-brand">
-						<a class="navbar-item" href="#">
-							<img src="img/kg-lightbulb.svg" width="50" height="28">
-							APG AM - Knowledge Graph
-						</a>
-						<div class="navbar-burger burger" data-target="topNav">
-							<span></span>
-							<span></span>
-							<span></span>
+	<nav class="navbar is-white topNav">
+		<div class="container">
+			<div class="navbar-brand">
+				<a class="navbar-item" href="#">
+					<img src="img/kg-lightbulb.svg" width="50" height="28">
+					APG AM - Knowledge Graph
+				</a>
+				<div class="navbar-burger burger" data-target="topNav">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<section class="container">
+		<div class="columns">
+			<div class="column">
+				<div class="columns is-vcentered">
+					<div class="column">
+						<span class="subtitle">
+							Searching for:
+						</span>
+						<span class="subtitle has-text-weight-bold">
+							Malls in Barcelona
+						</span>
+						<br><br>
+						<span class="help">
+							Filtering for:
+						</span>
+						<span class="tag is-info is-medium">
+							Country: USA
+							<button class="delete is-small"></button>
+						</span>
+						<span class="tag is-info is-medium">
+							A+
+							<button class="delete is-small"></button>
+						</span>
+						<span class="tag is-info is-medium">
+							€100k - €1m
+							<button class="delete is-small"></button>
+						</span>
+					</div>
+					<div class="column">
+						<div class="field has-addons">
+							<div class="control is-expanded">
+								<input class="input" type="text" placeholder="Search Database...">
+							</div>
+							<div class="control">
+								<a class="button is-info">
+									Search
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
-			</nav>
-
-	<section class="container">
-		<div class="columns clearTop">
+			</div>
+		</div>
+		<div class="columns">
 			<div class="column is-3">
 				<aside class="menu">
 					<p class="menu-label">
@@ -49,67 +91,45 @@
 							</select>
 						</div>
 					</div>
+					<br>
+
+					<div class="control">
+						<div class="select">
+							<select>
+								<option>Select Grade</option>
+								<option>A+</option>
+								<option>A</option>
+								<option>A-</option>
+							</select>
+						</div>
+					</div>
 
 					<br>
 
 					<div class="field has-addons">
 						<p class="control">
+							<input class="input is-expanded" type="text" placeholder="Minimum Range">
+						</p>
+						<p class="control">
+							<input class="input is-expanded" type="text" placeholder="Maximum Range">
+						</p>
+						<p class="control">
 							<span class="select">
 								<select>
-									<option>$</option>
-									<option>£</option>
-									<option>€</option>
+									<option>million $</option>
+									<option>million £</option>
+									<option>million €</option>
 								</select>
 							</span>
 						</p>
-						<p class="control">
-							<input class="input is-expanded" type="text" placeholder="Maximum Return Amount">
-						</p>
-						<p class="control">
-							<a class="button">
-								Search
-							</a>
-						</p>
 					</div>
-					<div class="field has-addons">
-						<input class="slider is-fullwidth" step="1" min="0" max="100" value="50" type="range">
-					</div>
-					<div class="field has-addons">
-						<p class="control">
-							<label class="checkbox">
-								<input type="checkbox">
-								Checkbox
-							</label>
-						</p>
-					</div>
+					<p class="control">
+						<a class="button is-info">Add Filters</a>
+					</p>
 
 				</aside>
 			</div>
 			<div class="column is-9">
-				<div class="columns">
-					<div class="column">
-						<span class="subtitle">
-							Searching for:
-						</span>
-						<span class="subtitle has-text-weight-bold">
-							Malls in Barcelona
-						</span>
-					</div>
-					<div class="column">
-						<div class="field has-addons">
-							<div class="control is-expanded">
-								<input class="input" type="text"
-									placeholder="Search Database...">
-							</div>
-							<div class="control">
-								<a class="button is-info">
-									Search
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				
 				<div class="box content">
 					<article class="post">
 						<h4>Bulma: How do you center a button in a box?</h4>
