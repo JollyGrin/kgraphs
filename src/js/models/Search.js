@@ -18,8 +18,8 @@ export default class Search {
     
         const proxy = 'https://cors-anywhere.herokuapp.com/';
         // const key = '259a740ab0267df343cd20b4177a3d16';
-        // const key = '9c407b7c371776692fb3786445ef8801';
-        const key = '6fc289cb24c4596f929ebbd12997fe33';
+        const key = '9c407b7c371776692fb3786445ef8801';
+        // const key = '6fc289cb24c4596f929ebbd12997fe33';
 
         try {
             const res = await axios(`${proxy}http://www.food2fork.com/api/search?key=${key}&q=${this.query}`);
