@@ -48,18 +48,20 @@
 						<span class="help">
 							Filtering for:
 						</span>
-						<span class="tag is-info is-medium">
-							Country: USA
-							<button class="delete is-small"></button>
-						</span>
-						<span class="tag is-info is-medium">
-							A+
-							<button class="delete is-small"></button>
-						</span>
-						<span class="tag is-info is-medium">
-							€100k - €1m
-							<button class="delete is-small"></button>
-						</span>
+						<div class="filter__tags">
+							<!-- <span class="tag is-info is-medium">
+								Country: USA
+								<button class="delete is-small"></button>
+							</span>
+							<span class="tag is-info is-medium">
+								A+
+								<button class="delete is-small"></button>
+							</span>
+							<span class="tag is-info is-medium">
+								€100k - €1m
+								<button class="delete is-small"></button>
+							</span> -->
+						</div>
 					</div>
 					<div class="column">
 						<form class="field has-addons search__div">
@@ -95,7 +97,7 @@
 
 					<div class="control">
 						<div class="select">
-							<select>
+							<select id="filter__grade">
 								<option>Select Grade</option>
 								<option>A+</option>
 								<option>A</option>
@@ -108,23 +110,24 @@
 
 					<div class="field has-addons">
 						<p class="control">
-							<input class="input is-expanded" type="text" placeholder="Minimum Range">
+							<input id="filter__min" class="input is-expanded" type="text" placeholder="Minimum Range">
 						</p>
 						<p class="control">
-							<input class="input is-expanded" type="text" placeholder="Maximum Range">
+							<input id="filter__max" class="input is-expanded" type="text" placeholder="Maximum Range">
 						</p>
 						<p class="control">
 							<span class="select">
-								<select>
-									<option>million $</option>
-									<option>million £</option>
-									<option>million €</option>
+								<select id="filter__cur">
+									<option>€ million</option>
+									<option>$ million </option>
+									<option>£ million</option>
 								</select>
 							</span>
 						</p>
 					</div>
 					<p class="control">
-						<a class="button is-info">Add Filters</a>
+						<a id="filter__button" class="button is-info">Add Filters</a>
+						<a id="filter__clear" class="button is-text">Clear Filters</a>
 					</p>
 
 				</aside>

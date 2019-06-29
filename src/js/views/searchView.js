@@ -11,6 +11,25 @@ export const clearResults = () => {
     elements.searchTerm.innerHTML = '';
 };
 
+export const clearFilters = () => {
+    elements.filterTagDiv.innerHTML = '';
+};
+
+export const filterInit = () => {
+    elements.filterCountry.value = 'Select Country';
+    elements.filterGrade.value = 'Select Grade';
+    elements.filterMin.value = '';
+    elements.filterMax.value = '';
+    elements.filterCur.value = '€ million';
+
+}
+
+// export const getFilters = () => {
+//     elements.filterCountry.value;
+//     elements.filterGrade.value;
+// };
+
+
 const renderResult = result => {
     const markup = `
         <article class="post">
@@ -33,8 +52,24 @@ const renderResult = result => {
     `;
 
     elements.resultsPanel.insertAdjacentHTML('beforeend', markup);
+};
+
+const renderFilter = result => {
+    const markup = `
+        <span class="tag is-info is-medium">
+            ${result}
+        </span>
+    `;
+
+    elements.filterTagDiv.insertAdjacentHTML('beforeend', markup);
 }
 
 export const renderResults = results => {
     results.forEach(renderResult);
-}
+};
+
+export const renderFilters = results => {
+    (results.country == 'Select Country') ? '' : renderFilter(`Country: ${results.country}`);
+    (results.grade == 'Select Grade') ? '' : renderFilter(`Grade: ${results.grade}`);
+    (results.min && results.max) ? renderFilter(`range: ${results.min} - ${results.max}${results.cur}`) : '';
+};
