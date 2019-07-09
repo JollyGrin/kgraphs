@@ -13,7 +13,10 @@ const test = async testQ => {
     
     try {
         // const res = await axios(`${proxy}http://www.food2fork.com/api/search?key=${key}&q=${this.query}`);
-        const res = await axios.get(`${proxy}https://dcd1d911.ngrok.io/access4dean`).then(response => {
+        const res = await axios.get(`${proxy}https://dcd1d911.ngrok.io/access4dean`,
+        {
+            test: 'hi'
+        }).then(response => {
             console.log(response.data.tasks);
         });
         console.log(res);
