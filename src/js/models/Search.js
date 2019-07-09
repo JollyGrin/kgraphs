@@ -1,4 +1,7 @@
 import axios from 'axios';
+import * as json from './data.json';
+
+// console.log(json);
 
 export default class Search {
     constructor(query) {
@@ -22,8 +25,8 @@ export default class Search {
         // const key = '6fc289cb24c4596f929ebbd12997fe33';
 
         try {
-            const res = await axios(`${proxy}http://www.food2fork.com/api/search?key=${key}&q=${this.query}`);
-            this.result = res.data.recipes;
+            // const res = await axios(`${proxy}http://www.food2fork.com/api/search?key=${key}&q=${this.query}`);
+            this.result = json;
             apiLimitCatch(res); // will consolelog if daily api limit of food2fork is reached
             // console.log(this.result);
         } catch(error) {

@@ -31,28 +31,21 @@ export const filterInit = () => {
 
 
 const renderResult = result => {
-    const noi = parseFloat(result[1].has_NOI_yield, 10);
     const markup = `
         <article class="post">
-                <h4>${result[0]}</h4>
+                <h4>${result.title}</h4>
                 <div class="media">
                     
                     <div class="media-content">
                         <div class="content">
                             <p>
-                                Constructed in:
-                                <span class="tag">${result[1].has_construction_year}</span>
-                                GLA:
-                                <span class="tag">${result[1].has_GLA}</span>
-                                NOI Yield:
-                                <span class="tag">${(noi*100).toFixed(2)}%</span>
-                                Area Income:
-                                <span class="tag ${tagColor(result[1].has_area_income)}">${result[1].has_area_income}</span>
+                                <a href="${result.f2f_url}">${result.publisher}</a> replied 34 minutes ago &nbsp;
+                                <span class="tag">Question</span>
                             </p>
                         </div>
                     </div>
                     <div class="media-right">
-                        <span><a href="https://www.google.com/maps/search/${result[0]}+${result[1].is_located_in_country}"><i class="fas fa-map-pin"></i> ${result[1].is_located_in_country}</a></span>
+                        <span class="has-text-grey-light"><i class="fa fa-comments"></i> 1</span>
                     </div>
                 </div>
         </article>
@@ -61,32 +54,18 @@ const renderResult = result => {
     elements.resultsPanel.insertAdjacentHTML('beforeend', markup);
 };
 
-const tagColor = (res) => {
-    if (res == 'Low') {
-        return 'is-danger';
-    } else if (res == 'Medium') {
-        return 'is-info';
-    } else if (res == 'High') {
-        return 'is-primary';
-    }
-}
-
 const renderFilter = result => {
     const markup = `
         <span class="tag is-info is-medium">
             ${result}
-            <button class="delete is-small"></button>
         </span>
     `;
 
     elements.filterTagDiv.insertAdjacentHTML('beforeend', markup);
 }
 
-export const renderResults = (results, page = 1, resPerPage = 10) => {
-    // const start = 0; //needed later for paginations
-    // const end = 10;
-    // results.forEach(renderResult); 
-    console.log(results);   
+export const renderResults = results => {
+    results.forEach(renderResult);
 };
 
 export const renderFilters = results => {
