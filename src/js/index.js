@@ -4,7 +4,7 @@ import {elements, renderLoader } from './views/base';
 import * as searchView from './views/searchView';
 // import * as json from './models/data.json';
 
-import axios from 'axios'; 
+import axios from 'axios';
 
 
 
