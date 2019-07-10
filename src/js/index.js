@@ -1,42 +1,8 @@
-import Search from './models/SearchAPI';
+import Search from './models/Search';
 import Filter from './models/Filter';
 import {elements, renderLoader } from './views/base';
 import * as searchView from './views/searchView';
-// import * as json from './models/data.json';
-
-import axios from 'axios';
-
-
-
-const test = async testQ => {
-    const proxy = 'https://cors-anywhere.herokuapp.com/';
-    
-    try {
-        // const res = await axios(`${proxy}http://www.food2fork.com/api/search?key=${key}&q=${this.query}`);
-        const res = await axios.get(`${proxy}https://76e8427b.ngrok.io/access4dean`,
-        {
-            test: 'hi'
-        }).then(response => {
-            console.log(response.data.tasks);
-        });
-        console.log(res);
-        this.result = res;
-
-    } catch (error) {
-        console.log('We got an error, chief');
-        console.log(error);
-    }
-};
-
-test();
-
-
-
-
-
-
-
-
+import * as json from './models/data.json';
 
 // const test = 0;
 
@@ -73,16 +39,16 @@ const controlSearch = async () => {
     searchView.clearResults();
     elements.searchTerm.innerHTML = searchView.getInput(); // add search term in searching for:
 
-    // // structure json
-    // const arrJson = Object.entries(json);
-    // // console.log(arrJson);
-    // const j1 = arrJson;
-    // // console.log(j1);
+    // structure json
+    const arrJson = Object.entries(json);
+    // console.log(arrJson);
+    const j1 = arrJson;
+    // console.log(j1);
 
 
     // render results to ui
     // console.log(state.search.result); //for testing, display search results
-    searchView.renderResults(query.slice(0,6)); //renders first 5 results
+    searchView.renderResults(j1.slice(0,6)); //renders first 5 results
     searchView.clearInput();
 };
 

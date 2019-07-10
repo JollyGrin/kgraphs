@@ -82,10 +82,8 @@ const renderFilter = result => {
     elements.filterTagDiv.insertAdjacentHTML('beforeend', markup);
 }
 
-export const renderResults = (results, page = 1, resPerPage = 10) => {
-    // const start = 0; //needed later for paginations
-    // const end = 10;
-    // results.forEach(renderResult); 
+export const renderResults = (results) => {
+    results.forEach(renderResult); 
     console.log(results);   
 };
 
