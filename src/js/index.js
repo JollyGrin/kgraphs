@@ -4,7 +4,7 @@ import {elements, renderLoader } from './views/base';
 import * as searchView from './views/searchView';
 // import * as json from './models/data.json';
 
-import axios from 'axios';
+import axios from 'axios'; 
 
 
 
@@ -13,7 +13,7 @@ const test = async testQ => {
     
     try {
         // const res = await axios(`${proxy}http://www.food2fork.com/api/search?key=${key}&q=${this.query}`);
-        const res = await axios.get(`${proxy}https://dcd1d911.ngrok.io/access4dean`,
+        const res = await axios.get(`${proxy}https://76e8427b.ngrok.io/access4dean`,
         {
             test: 'hi'
         }).then(response => {
