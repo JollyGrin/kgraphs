@@ -1,15 +1,13 @@
 import Search from './models/Search';
 import Filter from './models/Filter';
-import {elements, renderLoader } from './views/base';
+import { elements, renderLoader } from './views/base';
 import * as searchView from './views/searchView';
 import * as json from './models/data.json';
-
-// const test = 0;
 
 /** Global state of the app
  * Search object
  */
-const state = {
+export const state = {
     // filter: {
     //     country: '',
     //     grade: '',
@@ -25,10 +23,27 @@ const init = () => {
 
 init();
 
+const filterDisplay = () => {
+    const objArr = Object.entries(state.filter);
+    let acc = [];
+    objArr.forEach(function (el) {
+    const el1 = el[1];
+    if (el1 == 'Select Country' || el1 == 'Select Grade' || el1 == '€ million' || el1 == '') {
+        // skips blank lines
+    } else {
+        const string = ` ${el[1]}`;
+        acc.push(string);
+    }
+        
+    });
+    
+return acc;
+};
+
 const controlSearch = async () => {
     // get query from view
     const query = searchView.getInput();
-    
+
 
     if (query) {
         // new search object & add to state
@@ -37,7 +52,9 @@ const controlSearch = async () => {
 
     // prepare UI for results
     searchView.clearResults();
-    elements.searchTerm.innerHTML = searchView.getInput(); // add search term in searching for:
+    elements.searchTerm.innerHTML = `
+        ${searchView.getInput()} + ${filterDisplay()}
+        `; // add search term in searching for:
 
     // structure json
     const arrJson = Object.entries(json);
@@ -48,7 +65,7 @@ const controlSearch = async () => {
 
     // render results to ui
     // console.log(state.search.result); //for testing, display search results
-    searchView.renderResults(j1.slice(0,6)); //renders first 5 results
+    searchView.renderResults(j1.slice(0, 6)); //renders first 5 results
     searchView.clearInput();
 };
 
@@ -56,7 +73,7 @@ const controlFilter = () => {
 
     // clear existing filters
     searchView.clearFilters();
-    
+
     // get value of all the filters to state
     state.filter = new Filter(
         elements.filterCountry.value,
@@ -89,8 +106,8 @@ elements.searchButton.addEventListener('click', e => {
 
 // add filters
 elements.filterButton.addEventListener('click', e => {
-   e.preventDefault();
-   controlFilter(); 
+    e.preventDefault();
+    controlFilter();
 });
 
 // clear filters on x
@@ -99,5 +116,30 @@ elements.filterClear.addEventListener('click', e => {
     searchView.clearFilters();
     searchView.filterInit();
 });
+
+elements.filterTagDiv.addEventListener('click', e => {
+    // select the filter
+    const del = e.target.closest('.delete').parentNode;
+
+    // grab id of filter
+    const delID = del.id;
+
+    // delete the selected ID from state
+    function delFilter(id) {
+        // set the ID element's state to null
+        state.filter[id] = '';
+
+        // clear all filters
+        searchView.clearFilters();
+
+        // render filters from state
+        searchView.renderFilters(state.filter);
+    };
+    delFilter(delID);
+});
+
+export const rmFilterState = () => {
+    state.filter = '';
+};
 
 

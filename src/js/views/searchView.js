@@ -1,4 +1,5 @@
 import { elements } from './base';
+import * as index from '../index';
 
 export const getInput = () => elements.searchInput.value;
 
@@ -13,6 +14,7 @@ export const clearResults = () => {
 
 export const clearFilters = () => {
     elements.filterTagDiv.innerHTML = '';
+    // index.state.filter = '';
 };
 
 export const filterInit = () => {
@@ -22,6 +24,7 @@ export const filterInit = () => {
     elements.filterMax.value = '';
     elements.filterCur.value = '€ million';
 
+    index.rmFilterState();
 }
 
 // export const getFilters = () => {
@@ -71,9 +74,9 @@ const tagColor = (res) => {
     }
 }
 
-const renderFilter = result => {
+const renderFilter = (result, tag) => {
     const markup = `
-        <span class="tag is-info is-medium">
+        <span id="${tag}" class="tag is-info is-medium">
             ${result}
             <button class="delete is-small"></button>
         </span>
@@ -83,12 +86,11 @@ const renderFilter = result => {
 }
 
 export const renderResults = (results) => {
-    results.forEach(renderResult); 
-    console.log(results);   
+    results.forEach(renderResult);   
 };
 
 export const renderFilters = results => {
-    (results.country == 'Select Country') ? '' : renderFilter(`Country: ${results.country}`);
-    (results.grade == 'Select Grade') ? '' : renderFilter(`Grade: ${results.grade}`);
+    (results.country == 'Select Country' || results.country == '') ? '' : renderFilter(`Country: ${results.country}`, 'country');
+    (results.grade == 'Select Grade' || results.grade == '') ? '' : renderFilter(`Grade: ${results.grade}`, 'grade');
     (results.min && results.max) ? renderFilter(`range: ${results.min} - ${results.max}${results.cur}`) : '';
 };
