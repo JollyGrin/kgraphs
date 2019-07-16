@@ -95,6 +95,33 @@ elements.filterButton.addEventListener('click', e => {
     controlFilter();
 });
 
+// remove filter on clicking x inside the tag
+elements.filterTagDiv.addEventListener('click', e => {
+    
+    // select the filter
+    const del = e.target.closest('.delete').parentNode;
+
+    // grab id of filter
+    const delID = del.id;
+    console.log(delID);
+
+    // delete the selected ID from state
+    function delFilter(id) {
+        // set the ID element's state to null
+        state.filter[id] = '';
+
+        // clear all filters
+        searchView.clearFilters();
+
+        // render filters from state
+        searchView.renderFilters(state.filter);
+    };
+    delFilter(delID);
+
+    controlSearch();
+});
+
+
 // clear filters on "clear filters"
 elements.filterClear.addEventListener('click', e => {
     e.preventDefault();
