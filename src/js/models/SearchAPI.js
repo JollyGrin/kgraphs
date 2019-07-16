@@ -1,30 +1,30 @@
 import axios from 'axios';
-// import * as json from './data.json';
-
-// const {json_file} = json;
-
-// console.log(json);
 
 export default class Search {
-    constructor(query) {
+    constructor(query, country, grade) {
         this.query = query;
+        this.country = country;
+        this.grade = grade;
     }
 
-    async getResults() {
+    async getResults () {
+
+        const proxy = 'https://cors-anywhere.herokuapp.com/';
+        const apiURL = `${proxy}https://knowledge-graph-backend.herokuapp.com/dev`;
+        const options = {
+            'query': this.query,
+            'country': this.country,
+            'grade': this.grade
+        };
+
+        console.log(options, 'log of options variable')
 
         try {
-            // const res = await axios(`${proxy}http://www.food2fork.com/api/search?key=${key}&q=${this.query}`);
-            const res = await axios.get(`http://127.0.0.1:5000/access4dean`).then(response => {
-                console.log(response);
-            });
-            console.log(res);
-            this.result = res;
+            const result = await axios.post(apiURL, options);
+            this.result = result.data;
 
-        } catch (error) {
-            console.log('We got an error, chief');
-            console.log(error);
+        } catch (err) {
+            console.log(err);
         }
-
     }
-
-}
+};

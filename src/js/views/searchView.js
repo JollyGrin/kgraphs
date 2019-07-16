@@ -13,6 +13,8 @@ export const clearResults = () => {
 
 export const clearFilters = () => {
     elements.filterTagDiv.innerHTML = '';
+
+    console.log('filter tags reset')
 };
 
 export const filterInit = () => {
@@ -21,6 +23,8 @@ export const filterInit = () => {
     elements.filterMin.value = '';
     elements.filterMax.value = '';
     elements.filterCur.value = '€ million';
+
+    console.log('filter menu reset')
 
 }
 
@@ -85,8 +89,8 @@ const renderFilter = result => {
 export const renderResults = (results, page = 1, resPerPage = 10) => {
     // const start = 0; //needed later for paginations
     // const end = 10;
-    // results.forEach(renderResult); 
-    console.log(results);   
+    results.forEach(renderResult); 
+    // console.log(results);   
 };
 
 export const renderFilters = results => {
