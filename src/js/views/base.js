@@ -13,3 +13,8 @@ export const elements = {
     filterCur: document.getElementById('filter__cur')
 };
 
+// export const stateFilters = {
+//     country: 'country',
+//     grade: 'quality_grade_external1',
+//     footfall: 'footfall_range',
+// }

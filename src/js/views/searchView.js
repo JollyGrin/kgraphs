@@ -35,28 +35,38 @@ export const filterInit = () => {
 
 
 const renderResult = result => {
-    const noi = parseFloat(result[1].has_NOI_yield, 10);
+    console.log(result, 'logging result of render array');
+    
+    // convert the object into an array
+    const res = Object.entries(result);
+    // select the result array
+    const resArr = res[0];
+    // define the title of the result
+    const resTitle = resArr[0];
+    // define the properties of the result
+    const prop = resArr[1];
+    
     const markup = `
         <article class="post">
-                <h4>${result[0]}</h4>
+                <h4>${resTitle}</h4>
                 <div class="media">
                     
                     <div class="media-content">
                         <div class="content">
                             <p>
                                 Constructed in:
-                                <span class="tag">${result[1].has_construction_year}</span>
+                                <span class="tag">${prop['has year built']}</span>
                                 GLA:
-                                <span class="tag">${result[1].has_GLA}</span>
-                                NOI Yield:
-                                <span class="tag">${(noi*100).toFixed(2)}%</span>
+                                <span class="tag">${prop['has gla']}</span>
+                                NOI APG/External:
+                                <span class="tag">${prop['has noi yield apg']}/${prop['has noi yield external1']}</span>
                                 Area Income:
-                                <span class="tag ${tagColor(result[1].has_area_income)}">${result[1].has_area_income}</span>
+                                <span class="tag">${prop['has area income']}</span>
                             </p>
                         </div>
                     </div>
                     <div class="media-right">
-                        <span><a href="https://www.google.com/maps/search/${result[0]}+${result[1].is_located_in_country}"><i class="fas fa-map-pin"></i> ${result[1].is_located_in_country}</a></span>
+                        <span><a href="https://www.google.com/maps/search/${resTitle}+${prop['has city']}+${prop['has country']}"><i class="fas fa-map-pin"></i> ${prop['has city']}, <br> ${prop['has country']}</a></span>
                     </div>
                 </div>
         </article>
@@ -75,9 +85,7 @@ const tagColor = (res) => {
     }
 }
 
-const renderFilter = (result, tag) => {
-    console.log(result, tag, 'test');
-    
+const renderFilter = (result, tag) => {    
     const markup = `
         <span id="${tag}" class="tag is-info is-medium">
             ${result}
@@ -89,14 +97,10 @@ const renderFilter = (result, tag) => {
 }
 
 export const renderResults = (results, page = 1, resPerPage = 10) => {
-    // const start = 0; //needed later for paginations
-    // const end = 10;
     results.forEach(renderResult); 
-    // console.log(results);   
 };
 
 export const renderFilters = results => {
-    (results.country == 'Select Country') ? '' : renderFilter(`Country: ${results.country}`);
-    (results.grade == 'Select Grade') ? '' : renderFilter(`Grade: ${results.grade}`);
-    (results.min && results.max) ? renderFilter(`range: ${results.min} - ${results.max}${results.cur}`) : '';
+    (results.country == '') ? '' : renderFilter(`Country: ${results.country}`, 'country');
+    (results.grade == '') ? '' : renderFilter(`Grade: ${results.grade}`, 'grade');
 };

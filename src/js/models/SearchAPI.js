@@ -14,7 +14,7 @@ export default class Search {
         const options = {
             'query': this.query,
             'country': this.country,
-            'grade': this.grade
+            // ['has grade external']: this.grade
         };
 
         console.log(options, 'log of options variable')
