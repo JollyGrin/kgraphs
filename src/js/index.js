@@ -66,6 +66,9 @@ const controlSearch = async () => {
 
         // prepare UI for results
         searchView.clearResults();
+        elements.searchTerm.innerHTML = `
+        ${searchView.getInput()}${filterDisplay()}
+        `; // add search term in searching for:
         elements.searchTerm.innerHTML = searchView.getInput(); // add search term in searching for:
 
         // search
