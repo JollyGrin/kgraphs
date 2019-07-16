@@ -75,9 +75,11 @@ const tagColor = (res) => {
     }
 }
 
-const renderFilter = result => {
+const renderFilter = (result, tag) => {
+    console.log(result, tag, 'test');
+    
     const markup = `
-        <span class="tag is-info is-medium">
+        <span id="${tag}" class="tag is-info is-medium">
             ${result}
             <button class="delete is-small"></button>
         </span>

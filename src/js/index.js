@@ -24,6 +24,33 @@ const init = () => {
 
 init();
 
+const filterDisplay = () => {
+    // turn object of filters into an array
+    const objArr = Object.entries(state.filter);
+    
+    // create accumulator to store results
+    let acc = [];
+
+    // run a foreach on each filter
+    objArr.forEach(function (el) {
+    // select filter value of each row
+        const el1 = el[1];
+    if (el1 == 'Select Country' || el1 == 'Select Grade' || el1 == 'Select Currency' || el1 == '') {
+        // skips blank lines
+    } else {
+        const string = ` ${el[1]}`;
+        acc.push(string);
+    }
+        
+    });
+    
+    if (acc.length !== 0) {
+        return ` + ${acc}`;
+    } else {
+        return '';
+    }
+};
+
 const controlSearch = async () => {
     // get query from view
     const query = searchView.getInput();
