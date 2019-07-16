@@ -94,7 +94,7 @@ export const renderFilters = results => {
     (results.country == 'Select Country' || results.country == '') ? '' : renderFilter(`Country: ${results.country}`, 'country');
     (results.grade == 'Select Grade' || results.grade == '') ? '' : renderFilter(`Grade: ${results.grade}`, 'grade');
     // (results.min && results.max) ? renderFilter(`range: ${results.min} - ${results.max}${results.cur}`) : '';
-    (results.min) ? renderFilter(`min range: ${results.min}`, 'min') : '';
+    (results.min) ? renderFilter(`min range: ${results.min}${results.cur}`, 'min') : '';
     (results.max) ? renderFilter(`max range: ${results.max}`, 'max') : '';
-    (results.cur) ? renderFilter(`currency: ${results.cur}`, 'cur') : '';
+    (results.cur == 'Select Currency' || results.cur == '') ? '' : renderFilter(`currency: ${results.cur}`, 'cur');
 };
