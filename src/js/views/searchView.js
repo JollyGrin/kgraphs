@@ -13,19 +13,13 @@ export const clearResults = () => {
 
 export const clearFilters = () => {
     elements.filterTagDiv.innerHTML = '';
-
-    console.log('filter tags reset')
 };
 
 export const filterInit = () => {
-    elements.filterCountry.value = 'Select Country';
-    elements.filterGrade.value = 'Select Grade';
-    elements.filterMin.value = '';
-    elements.filterMax.value = '';
-    elements.filterCur.value = '€ million';
-
-    console.log('filter menu reset')
-
+    elements.filterCountry.value = '';
+    elements.filterGrade.value = '';
+    elements.filterFMin.value = '';
+    elements.filterFMax.value = '';
 }
 
 // export const getFilters = () => {
@@ -35,7 +29,7 @@ export const filterInit = () => {
 
 
 const renderResult = result => {
-    console.log(result, 'logging result of render array');
+    console.log(result, 'result from search query');
     
     // convert the object into an array
     const res = Object.entries(result);
@@ -54,14 +48,16 @@ const renderResult = result => {
                     <div class="media-content">
                         <div class="content">
                             <p>
-                                Constructed in:
-                                <span class="tag">${prop['has year built']}</span>
+                                Grade APG/External:
+                                <span class="tag">${prop['has quality grade apg']} / ${prop['has quality grade external1']}</span>
                                 GLA:
                                 <span class="tag">${prop['has gla']}</span>
                                 NOI APG/External:
-                                <span class="tag">${prop['has noi yield apg']}/${prop['has noi yield external1']}</span>
+                                <span class="tag">${prop['has noi yield apg']} / ${prop['has noi yield external1']}</span>
                                 Area Income:
-                                <span class="tag">${prop['has area income']}</span>
+                                <span class="tag ${tagColor(prop['has area income'])}">${prop['has area income']}</span>
+                                Footfall:
+                                <span class="tag">${prop['has footfall external1']}</span>
                             </p>
                         </div>
                     </div>
@@ -82,10 +78,12 @@ const tagColor = (res) => {
         return 'is-info';
     } else if (res == 'High') {
         return 'is-primary';
+    } else if (res == 'Very High') {
+        return 'is-primary';
     }
 }
 
-const renderFilter = (result, tag) => {    
+const renderFilter = (result, tag) => {        
     const markup = `
         <span id="${tag}" class="tag is-info is-medium">
             ${result}
@@ -103,4 +101,5 @@ export const renderResults = (results, page = 1, resPerPage = 10) => {
 export const renderFilters = results => {
     (results.country == '') ? '' : renderFilter(`Country: ${results.country}`, 'country');
     (results.grade == '') ? '' : renderFilter(`Grade: ${results.grade}`, 'grade');
+    // (results.footfall[0] === '' && results.footfall[1] === '') ? '' : renderFilter(`Footfall: ${results.footfall[0]} - ${results.footfall[1]}`, 'footfall')
 };

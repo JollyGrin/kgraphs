@@ -8,6 +8,7 @@ const state = {
     filter: {
         country:'',
         grade:'',
+        footfall: [],
 
     }
 };
@@ -15,6 +16,7 @@ const state = {
 const init = () => {
     // searchView.clearResults();
     elements.searchTerm.innerHTML = '...';
+    console.log('Version: Last Update applied on July 17 @ 17.00')
 };
 init();
 
@@ -25,10 +27,11 @@ const controlSearch = async () => {
     // define filters from state
     const country = state.filter.country;
     const grade = state.filter.grade;
+    const footfall = state.filter.footfall;
 
-    console.log(state);
+    
 
-    if (query) {
+    /*if (query) {*/
         // new search object & add to state
         state.search = new Search(query, country, grade);
 
@@ -48,7 +51,7 @@ const controlSearch = async () => {
         searchView.renderResults(state.search.result.slice(0, 9)); //renders first 10 results
         searchView.clearInput();
 
-    }
+    /*}*/
 };
 
 const controlFilter = () => {
@@ -59,13 +62,14 @@ const controlFilter = () => {
     // get value of all the filters and add to state
     state.filter = new Filter(
         elements.filterCountry.value,
-        elements.filterGrade.value
-        // elements.filterMin.value,
-        // elements.filterMax.value,
+        elements.filterGrade.value,
+        elements.filterFMin.value,
+        elements.filterFMax.value
         // elements.filterCur.value
     );
 
     // render filter to tags
+    console.log(state.filter, 'logging filters')
     searchView.renderFilters(state.filter);
 
 };
@@ -100,6 +104,7 @@ elements.filterTagDiv.addEventListener('click', e => {
 
     // grab id of filter
     const delID = del.id;
+    console.log(delID, 'delID');
 
     // delete the selected ID from state
     function delFilter(id) {

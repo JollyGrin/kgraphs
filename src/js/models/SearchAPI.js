@@ -1,10 +1,11 @@
 import axios from 'axios';
 
 export default class Search {
-    constructor(query, country, grade) {
+    constructor(query, country, grade, footfall) {
         this.query = query;
         this.country = country;
         this.grade = grade;
+        // this.footfall = footfall;
     }
 
     async getResults () {
@@ -14,10 +15,12 @@ export default class Search {
         const options = {
             'query': this.query,
             'country': this.country,
-            // ['has grade external']: this.grade
+            'quality_grade_apg': this.grade
+            // 'footfall_external1': this.footfall
         };
 
-        console.log(options, 'log of options variable')
+        console.log('Searching database with the following criteria:')
+        console.log(options)
 
         try {
             const result = await axios.post(apiURL, options);

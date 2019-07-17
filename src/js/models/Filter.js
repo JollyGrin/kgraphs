@@ -1,9 +1,7 @@
 export default class Filter {
-    constructor(country, grade) {
+    constructor(country, grade, footfall_min, footfall_max) {
         this.country = country;
         this.grade = grade;
-        // this.min = min;
-        // this.max = max;
-        // this.cur = cur;
+        // this.footfall = [footfall_min, footfall_max]
     }
 };

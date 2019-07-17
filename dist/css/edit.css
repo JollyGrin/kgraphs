@@ -1,3 +1,7 @@
 div {
     /* background-color: black; */
 }
+
+.navbar-item img {
+    max-height: 5rem !important;
+}

@@ -8,9 +8,8 @@ export const elements = {
     filterTagDiv: document.querySelector('.filter__tags'),
     filterCountry: document.getElementById('filter__country'),
     filterGrade: document.getElementById('filter__grade'),
-    filterMin: document.getElementById('filter__min'),
-    filterMax: document.getElementById('filter__max'),
-    filterCur: document.getElementById('filter__cur')
+    filterFMin: document.getElementById('filter__min'),
+    filterFMax: document.getElementById('filter__max'),
 };
 
 // export const stateFilters = {

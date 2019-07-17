@@ -20,16 +20,11 @@
 
 	<nav class="navbar is-white topNav">
 		<div class="container">
-			<div class="navbar-brand">
+			<div class="navbar-brand is-vc">
 				<a class="navbar-item" href="#">
-					<img src="img/kg-lightbulb.svg" width="50" height="28">
-					APG AM - Knowledge Graph
+					<img src="img/BRO.svg" style="max-height: 5rem !important">
 				</a>
-				<div class="navbar-burger burger" data-target="topNav">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
+				<p class="navbar-item subtitle">Business Real-estate Ontology</p>
 			</div>
 		</div>
 	</nav>
@@ -86,42 +81,53 @@
 						Filters
 					</p>
 
+
+					<p class="help">APG Grade</p>
+					<div class="control">
+						<div class="select">
+							<select id="filter__grade">
+								<option></option>
+								<option>A++</option>
+								<option>A+</option>
+								<option>A</option>
+								<option>A-</option>
+								<option>B+</option>
+								<option>B</option>
+								<option>B-</option>
+								<option>C+</option>
+								<option>C</option>
+								<option>C-</option>
+								<option>D</option>
+							</select>
+						</div>
+					</div>
+
+					<br>
 					<p class="help">Country</p>
 					<div class="control">
 						<div class="select">
 							<select id="filter__country">
 								<option></option>
-								<option>Netherlands</option>
 								<option>France</option>
 								<option>Germany</option>
-								<option>Italy</option>
+								<option>Netherlands</option>
+								<option>Spain</option>
+								<option>United Kingdom</option>
 							</select>
 						</div>
 					</div>
 					<br>
 
-					<p class="help">Grade</p>
-					<div class="control">
-						<div class="select">
-							<select id="filter__grade">
-								<option></option>
-								<option>A</option>
-								<option>B</option>
-								<option>C</option>
-							</select>
-						</div>
-					</div>
 
-					<br>
-
-					<!-- <div class="field has-addons">
+					<p class="help">Footfall Range (in thousands of people)</p>
+					<div class="field has-addons">
 						<p class="control">
 							<input id="filter__min" class="input is-expanded" type="text" placeholder="Minimum Range">
 						</p>
 						<p class="control">
 							<input id="filter__max" class="input is-expanded" type="text" placeholder="Maximum Range">
 						</p>
-						<p class="control">
+						<!-- <p class="control">
 							<span class="select">
 								<select id="filter__cur">
 									<option>Select Currency</option>
@@ -130,8 +136,8 @@
 									<option>£ million</option>
 								</select>
 							</span>
-						</p>
-					</div> -->
+						</p> -->
+					</div>
 					<p class="control">
 						<a id="filter__button" class="button is-info">Add Filters</a>
 						<a id="filter__clear" class="button is-text">Clear Filters</a>
