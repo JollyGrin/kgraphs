@@ -16,7 +16,7 @@ const state = {
 const init = () => {
     // searchView.clearResults();
     elements.searchTerm.innerHTML = '...';
-    console.log('Version: Last Update applied on July 17 @ 17.00')
+    console.log('Version: Last Update applied on July 22 @ 13.00')
 };
 init();
 
