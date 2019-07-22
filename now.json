@@ -4,7 +4,8 @@
     "build":
     {
       "env": {
-      "VARIABLE_NAME": "@test01"
+      "VARIABLE_NAME": "@test01",
+      "TEST2":"@test02"
     }
   }
 }
