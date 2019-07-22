@@ -57,7 +57,13 @@ const renderResult = result => {
                                 Area Income:
                                 <span class="tag ${tagColor(prop['has area income'])}">${prop['has area income']}</span>
                                 Footfall:
-                                <span class="tag">${prop['has footfall external1']}</span>
+                                <span class="tag">${Math.round((prop['has footfall external1']*100))/100}</span>
+                                Catchment:
+                                <span class="tag">${Math.round(prop['has catchment external2'])}</span>
+                                Sales:
+                                <span class="tag">€${Math.round(prop['has sales investee'])} million</span>
+                                Occupancy:
+                                <span class="tag">${Math.round(prop['has occupancy rate'])}%</span>
                             </p>
                         </div>
                     </div>
