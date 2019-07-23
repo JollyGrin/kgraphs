@@ -25,6 +25,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "babel-polyfill": "^6.26.0",
+    "bulma-modal-fx": "^1.1.1",
     "bulma-slider": "^2.0.0"
   }
 }

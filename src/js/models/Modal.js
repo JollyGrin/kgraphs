@@ -1,22 +1,20 @@
 import axios from 'axios';
 
-export default class Search {
-    constructor(query, country, grade, footfall) {
-        this.query = query;
-        this.country = country;
-        this.grade = grade;
-        // this.footfall = footfall;
+export default class Modal {
+    constructor(name, x, y) {
+        this.name = name;
+        this.x = x;
+        this.y = y;
     }
 
     async getResults () {
 
         const proxy = 'https://cors-anywhere.herokuapp.com/';
-        const apiURL = `${proxy}https://knowledge-graph-backend.herokuapp.com/dev`;
+        const apiURL = `${proxy}https://knowledge-graph-backend.herokuapp.com/modal`;
         const options = {
-            'query': this.query,
-            'country': this.country,
-            'quality_grade_apg': this.grade
-            // 'footfall_external1': this.footfall
+            'individual': this.name,
+            'property_x': this.x,
+            'property_y': this.y
         };
 
         console.log('Searching database with the following criteria:')

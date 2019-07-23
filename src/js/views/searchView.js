@@ -22,10 +22,9 @@ export const filterInit = () => {
     elements.filterFMax.value = '';
 }
 
-// export const getFilters = () => {
-//     elements.filterCountry.value;
-//     elements.filterGrade.value;
-// };
+export const clearModal = () => {
+    elements.modalID.innerHTML = '';
+};
 
 
 const renderResult = result => {
@@ -42,7 +41,7 @@ const renderResult = result => {
     
     const markup = `
         <article class="post">
-                <h4>${resTitle}</h4>
+                <h4 class="result__title">${resTitle}</h4>
                 <div class="media">
                     
                     <div class="media-content">
@@ -92,7 +91,41 @@ const renderFilter = (result, tag) => {
     `;
 
     elements.filterTagDiv.insertAdjacentHTML('beforeend', markup);
-}
+};
+
+export const toggleModal = (res) => {
+    // renderModal(res);
+    elements.modalID.classList.toggle('is-active');
+};
+
+export const renderModal = (res) => {
+    // clearModal();
+    const markup = `
+        <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">${res.name}</p>
+                    <button class="delete" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body">
+                    ${res.result}
+
+                    <br>
+
+                    <p>
+                        ${res.x}, ${res.y}
+                    </p>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-success">Save changes</button>
+                    <button class="button">Cancel</button>
+                </footer>
+            </div>
+        
+        <button class="modal-close is-large" aria-label="close"></button>
+    `;
+    elements.modalID.insertAdjacentHTML('beforeend', markup);
+};
 
 export const renderResults = (results, page = 1, resPerPage = 10) => {
     results.forEach(renderResult); 

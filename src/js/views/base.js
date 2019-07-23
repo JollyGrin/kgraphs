@@ -10,6 +10,8 @@ export const elements = {
     filterGrade: document.getElementById('filter__grade'),
     filterFMin: document.getElementById('filter__min'),
     filterFMax: document.getElementById('filter__max'),
+    modalID: document.getElementById('modal-id'),
+    titleOfResult: document.querySelector('result__title')
 };
 
 // export const stateFilters = {

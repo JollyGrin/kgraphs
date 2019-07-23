@@ -1,5 +1,6 @@
 import Search from './models/SearchAPI';
 import Filter from './models/Filter';
+import Modal from './models/Modal';
 import { elements, stateFilters } from './views/base';
 import * as searchView from './views/searchView';
 import axios from 'axios';
@@ -13,12 +14,33 @@ const state = {
     }
 };
 
-const init = () => {
+const init = async () => {
     // searchView.clearResults();
     elements.searchTerm.innerHTML = '...';
-    console.log('Version: Last Update applied on July 22 @ 13.00')
+    console.log('Version: Last Update applied on July 23 @ 13.00');
 };
 init();
+
+const controlModal = async (res) => {
+    const name = res;
+    const x = 'footfall_external1';
+    const y = 'sales_investee';
+    
+    // new modal object and add to state
+    state.modal = new Modal(name, x, y);
+
+    // get results from modal search and add to state.modal.result
+    await state.modal.getResults();
+
+    // console.log(state.modal, 'test modal');
+    // console.log(state.modal.result, 'test result');
+
+
+
+    await searchView.renderModal(state.modal);
+    searchView.toggleModal();
+
+};
 
 const controlSearch = async () => {
     // get query from search bar
@@ -86,8 +108,29 @@ elements.searchButton.addEventListener('click', e => {
 
 // add filters
 elements.filterButton.addEventListener('click', e => {
+    searchView.toggleModal();
     e.preventDefault();
     controlFilter();
+});
+
+// select title and render modal
+elements.resultsPanel.addEventListener('click', e => {
+    const titleDiv = e.target.closest('.result__title');
+    const title = titleDiv.innerHTML;
+    console.log(titleDiv, title, 'modal print');
+    
+    controlModal(title);
+});
+
+// close modal
+elements.modalID.addEventListener('click', e => {
+    const del = e.target.closest('.delete');
+
+    if(del) {
+        searchView.toggleModal();
+        searchView.clearModal();
+        state.modal = '';
+    }
 });
 
 // remove filter on clicking x inside the tag
@@ -98,7 +141,7 @@ elements.filterTagDiv.addEventListener('click', e => {
 
     // grab id of filter
     const delID = del.id;
-    console.log(delID, 'delID');
+    // console.log(delID, 'delID');
 
     // delete the selected ID from state
     function delFilter(id) {
