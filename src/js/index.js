@@ -17,9 +17,9 @@ const init = () => {
     // searchView.clearResults();
     elements.searchTerm.innerHTML = '...';
     console.log('Version: Last Update applied on July 22 @ 13.40');
-    console.log(process.env.VARIABLE_NAME);
-    console.log(process.env.TEST02, 'test2');
-    console.log(process.env, 'env')
+    console.log(process.env.VARIABLE_NAME, 'test01');
+    console.log(process.env.TEST02, 'test02');
+    console.log(process.env, 'log env')
 };
 init();
 
