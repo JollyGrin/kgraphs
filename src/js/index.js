@@ -6,8 +6,8 @@ import axios from 'axios';
 
 const state = {
     filter: {
-        country:'',
-        grade:'',
+        country: '',
+        grade: '',
         footfall: [],
 
     }
@@ -29,29 +29,23 @@ const controlSearch = async () => {
     const grade = state.filter.grade;
     const footfall = state.filter.footfall;
 
-    
-
-    /*if (query) {*/
-        // new search object & add to state
-        state.search = new Search(query, country, grade);
+    // new search object & add to state
+    state.search = new Search(query, country, grade);
 
 
-        // prepare UI for results
-        searchView.clearResults();
-        elements.searchTerm.innerHTML = `
-        ${searchView.getInput()}
-        `; // add search term in searching for:
-        elements.searchTerm.innerHTML = searchView.getInput(); // add search term in searching for:
+    // prepare UI for results
+    searchView.clearResults();
+    elements.searchTerm.innerHTML = `${searchView.getInput()}`; // add search term in searching for:
+    elements.searchTerm.innerHTML = searchView.getInput(); // add search term in searching for:
 
-        // search
-        await state.search.getResults();
+    // search
+    await state.search.getResults();
 
 
-        // render results to ui
-        searchView.renderResults(state.search.result.slice(0, 9)); //renders first 10 results
-        searchView.clearInput();
+    // render results to ui
+    searchView.renderResults(state.search.result.slice(0, 9)); //renders first 10 results
+    searchView.clearInput();
 
-    /*}*/
 };
 
 const controlFilter = () => {
