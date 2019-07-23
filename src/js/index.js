@@ -17,14 +17,14 @@ const state = {
 const init = async () => {
     // searchView.clearResults();
     elements.searchTerm.innerHTML = '...';
-    console.log('Version: Last Update applied on July 23 @ 13.00');
+    console.log('Last Update applied on July 23 @ 15.17');
 };
 init();
 
 const controlModal = async (res) => {
     const name = res;
-    const x = 'footfall_external1';
-    const y = 'sales_investee';
+    const y = 'quality_grade_apg';
+    const x = 'noi_yield_apg';
     
     // new modal object and add to state
     state.modal = new Modal(name, x, y);
@@ -108,7 +108,6 @@ elements.searchButton.addEventListener('click', e => {
 
 // add filters
 elements.filterButton.addEventListener('click', e => {
-    searchView.toggleModal();
     e.preventDefault();
     controlFilter();
 });
@@ -117,7 +116,6 @@ elements.filterButton.addEventListener('click', e => {
 elements.resultsPanel.addEventListener('click', e => {
     const titleDiv = e.target.closest('.result__title');
     const title = titleDiv.innerHTML;
-    console.log(titleDiv, title, 'modal print');
     
     controlModal(title);
 });

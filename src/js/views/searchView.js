@@ -28,7 +28,7 @@ export const clearModal = () => {
 
 
 const renderResult = result => {
-    console.log(result, 'result from search query');
+    // console.log(result, 'result from search query');
     
     // convert the object into an array
     const res = Object.entries(result);
@@ -41,7 +41,9 @@ const renderResult = result => {
     
     const markup = `
         <article class="post">
-                <h4 class="result__title">${resTitle}</h4>
+                <h4>
+                    <a class="result__title">${resTitle}</a>
+                </h4>
                 <div class="media">
                     
                     <div class="media-content">
@@ -116,13 +118,7 @@ export const renderModal = (res) => {
                         ${res.x}, ${res.y}
                     </p>
                 </section>
-                <footer class="modal-card-foot">
-                    <button class="button is-success">Save changes</button>
-                    <button class="button">Cancel</button>
-                </footer>
             </div>
-        
-        <button class="modal-close is-large" aria-label="close"></button>
     `;
     elements.modalID.insertAdjacentHTML('beforeend', markup);
 };
