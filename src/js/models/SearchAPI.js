@@ -1,10 +1,11 @@
 import axios from 'axios';
 
 export default class Search {
-    constructor(query, country, grade, footfall) {
+    constructor(query, country, grade, pageNum) {
         this.query = query;
         this.country = country;
         this.grade = grade;
+        this.page = pageNum
         // this.footfall = footfall;
     }
 
@@ -15,12 +16,12 @@ export default class Search {
         const options = {
             'query': this.query,
             'country': this.country,
-            'quality_grade_apg': this.grade
-            // 'footfall_external1': this.footfall
+            'quality_grade_apg': this.grade,
+            'page': this.page
         };
 
-        console.log('Searching database with the following criteria:')
-        console.log(options)
+        // console.log('Searching database with the following criteria:')
+        // console.log(options)
 
         try {
             const result = await axios.post(apiURL, options);

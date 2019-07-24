@@ -127,7 +127,7 @@
 					<br>
 
 
-					<p class="help">Footfall Range (in thousands of people)</p>
+					<!-- <p class="help">Footfall Range (in thousands of people)</p>
 					<div class="field has-addons">
 						<p class="control">
 							<input id="filter__min" class="input is-expanded" type="text" placeholder="Minimum Range">
@@ -135,17 +135,7 @@
 						<p class="control">
 							<input id="filter__max" class="input is-expanded" type="text" placeholder="Maximum Range">
 						</p>
-						<!-- <p class="control">
-							<span class="select">
-								<select id="filter__cur">
-									<option>Select Currency</option>
-									<option>€ million</option>
-									<option>$ million </option>
-									<option>£ million</option>
-								</select>
-							</span>
-						</p> -->
-					</div>
+					</div> -->
 					<p class="control">
 						<a id="filter__button" class="button is-info">Add Filters</a>
 						<a id="filter__clear" class="button is-text">Clear Filters</a>
@@ -181,17 +171,17 @@
 
 				<div class="container">
 					<nav class="pagination" role="navigation" aria-label="pagination">
-						<a class="pagination-previous" title="This is the first page" disabled>Previous</a>
-						<a class="pagination-next">Next page</a>
-						<ul class="pagination-list">
+						<!-- <a class="pagination-previous" title="This is the first page" disabled>Previous</a>
+						<a class="pagination-next">Next page</a> -->
+						<ul id="pageNumbers" class="pagination-list">
 							<li>
-								<a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
+								<a id="pageNum1" class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
 							</li>
 							<li>
-								<a class="pagination-link" aria-label="Goto page 2">2</a>
+								<a id="pageNum2" class="pagination-link" aria-label="Goto page 2">2</a>
 							</li>
 							<li>
-								<a class="pagination-link" aria-label="Goto page 3">3</a>
+								<a id="pageNum3" class="pagination-link" aria-label="Goto page 3">3</a>
 							</li>
 						</ul>
 					</nav>

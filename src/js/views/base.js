@@ -12,7 +12,11 @@ export const elements = {
     filterFMax: document.getElementById('filter__max'),
     modalID: document.getElementById('modal-id'),
     titleOfResult: document.querySelector('result__title'),
-    spinner: document.querySelector('.spinner')
+    spinner: document.querySelector('.spinner'),
+    page1: document.getElementById('pageNum1'),
+    page2: document.getElementById('pageNum2'),
+    page3: document.getElementById('pageNum3'),
+    pageList: document.getElementById('pageNumbers')
 };
 
 // export const stateFilters = {

@@ -34,8 +34,8 @@ export const controlModal = async (res, x = 'noi_yield_apg', y = 'quality_grade_
     spin.renderSpinner();
 
     // get results from modal search and add to state.modal.result
-    
-    
+
+
     await state.modal.getResults();
 
 
@@ -45,17 +45,18 @@ export const controlModal = async (res, x = 'noi_yield_apg', y = 'quality_grade_
 
 };
 
-const controlSearch = async () => {
+const controlSearch = async (page) => {
+
     // get query from search bar
     const query = searchView.getInput();
 
     // define filters from state
     const country = state.filter.country;
     const grade = state.filter.grade;
-    const footfall = state.filter.footfall;
+    const pageNum = page;
 
     // new search object & add to state
-    state.search = new Search(query, country, grade);
+    state.search = new Search(query, country, grade, pageNum);
 
 
     // prepare UI for results
@@ -70,8 +71,8 @@ const controlSearch = async () => {
 
 
     // render results to ui
-    searchView.renderResults(state.search.result.slice(0, 9)); //renders first 10 results
-    searchView.clearInput();
+    searchView.renderResults(state.search.result.slice(0, 10)); //renders first 10 results
+    // searchView.clearSearchInput();
     spin.rmSpinner();
 
 };
@@ -85,8 +86,8 @@ const controlFilter = () => {
     state.filter = new Filter(
         elements.filterCountry.value,
         elements.filterGrade.value,
-        elements.filterFMin.value,
-        elements.filterFMax.value
+        // elements.filterFMin.value,
+        // elements.filterFMax.value
         // elements.filterCur.value
     );
 
@@ -100,7 +101,12 @@ elements.searchInput.addEventListener('keypress', e => {
     if (e.keyCode === 13) {
         e.preventDefault();
         // controlFilter();
-        controlSearch();
+
+
+        // hardcode highlight page1
+        searchView.toggleCurrentPage();
+        elements.page1.classList.add('is-current');
+        controlSearch(1);
     }
 });
 
@@ -108,7 +114,12 @@ elements.searchInput.addEventListener('keypress', e => {
 elements.searchButton.addEventListener('click', e => {
     e.preventDefault();
     // controlFilter();
-    controlSearch();
+
+
+    // hardcode highlight page1
+    searchView.toggleCurrentPage();
+    elements.page1.classList.add('is-current');
+    controlSearch(1);
 });
 
 // add filters
@@ -163,7 +174,10 @@ elements.filterTagDiv.addEventListener('click', e => {
     };
     delFilter(delID);
 
-    controlSearch();
+    // hardcode highlight page1
+    searchView.toggleCurrentPage();
+    elements.page1.classList.add('is-current');
+    controlSearch(1);
 });
 
 
@@ -174,5 +188,37 @@ elements.filterClear.addEventListener('click', e => {
     searchView.filterInit();
     state.filter = {};
 });
+
+// pagination: page 1
+elements.page1.addEventListener('click', e => {
+
+    searchView.toggleCurrentPage();
+    controlSearch(1);
+
+    elements.page1.classList.add('is-current');
+
+});
+
+// pagination: page 2
+elements.page2.addEventListener('click', e => {
+
+    searchView.toggleCurrentPage();
+    controlSearch(2);
+
+    elements.page2.classList.add('is-current');
+
+});
+
+// pagination: page 2
+elements.page3.addEventListener('click', e => {
+
+    searchView.toggleCurrentPage();
+    controlSearch(3);
+
+    elements.page3.classList.add('is-current');
+
+});
+
+
 
 

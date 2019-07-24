@@ -8,8 +8,6 @@ export const renderSpinner = (where) => {
     </div>
     `;
 
-    console.log(document.getElementById('modal-id'));
-
     if(where === 'results') {
         elements.resultsPanel.insertAdjacentHTML('afterbegin', markup);
     } else {

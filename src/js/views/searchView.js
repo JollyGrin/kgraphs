@@ -3,7 +3,7 @@ import * as index from '../index';
 
 export const getInput = () => elements.searchInput.value;
 
-export const clearInput = () => {
+export const clearSearchInput = () => {
     elements.searchInput.value = '';
 };
 
@@ -25,6 +25,14 @@ export const filterInit = () => {
 
 export const clearModal = () => {
     elements.modalID.innerHTML = '';
+};
+
+export const toggleCurrentPage = () => {
+
+    const pageList = elements.pageList;
+    const pageChild = pageList.querySelector('.is-current');
+    pageChild.classList.toggle('is-current');
+
 };
 
 
@@ -142,10 +150,10 @@ export const renderModal = (res) => {
                     <button id="xy-button" class="button is-success">Update Chart X/Y</button>
                 </footer>
     `;
-    
+
     // create the modal
     elements.modalID.insertAdjacentHTML('beforeend', markup);
-    
+
     // render the available modal filters
     renderModalFilterList(propJSON);
 
