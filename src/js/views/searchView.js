@@ -1,4 +1,5 @@
 import { elements } from './base';
+import * as index from '../index';
 
 export const getInput = () => elements.searchInput.value;
 
@@ -29,7 +30,7 @@ export const clearModal = () => {
 
 const renderResult = result => {
     // console.log(result, 'result from search query');
-    
+
     // convert the object into an array
     const res = Object.entries(result);
     // select the result array
@@ -38,7 +39,7 @@ const renderResult = result => {
     const resTitle = resArr[0];
     // define the properties of the result
     const prop = resArr[1];
-    
+
     const markup = `
         <article class="post">
                 <h4>
@@ -84,7 +85,7 @@ const tagColor = (res) => {
     }
 }
 
-const renderFilter = (result, tag) => {        
+const renderFilter = (result, tag) => {
     const markup = `
         <span id="${tag}" class="tag is-info is-medium">
             ${result}
@@ -96,35 +97,89 @@ const renderFilter = (result, tag) => {
 };
 
 export const toggleModal = (res) => {
-    // renderModal(res);
-    elements.modalID.classList.toggle('is-active');
+    elements.modalID.parentNode.classList.toggle('is-active');
 };
 
 export const renderModal = (res) => {
-    // clearModal();
+    const prop = res.result.properties;
+    const propJSON = JSON.parse(prop);
+
+
     const markup = `
-        <div class="modal-background"></div>
-            <div class="modal-card">
                 <header class="modal-card-head">
                     <p class="modal-card-title">${res.name}</p>
                     <button class="delete" aria-label="close"></button>
                 </header>
                 <section class="modal-card-body">
-                    ${res.result}
+                    ${res.result.plot}
 
                     <br>
 
-                    <p>
-                        ${res.x}, ${res.y}
-                    </p>
+                    <div class="columns is-mobile">
+                        <div class="column">
+                            <p class="help">X Filter</p>
+                            <div class="control">
+                                <div class="select">
+                                    <select id="modal-filter-x">
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <p class="help">Y Filter</p>
+                            <div class="control">
+                                <div class="select">
+                                    <select id="modal-filter-y">
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
-            </div>
+                <footer class="modal-card-foot">
+                    <button id="xy-button" class="button is-success">Update Chart X/Y</button>
+                </footer>
     `;
+    
+    // create the modal
     elements.modalID.insertAdjacentHTML('beforeend', markup);
+    
+    // render the available modal filters
+    renderModalFilterList(propJSON);
+
+    const xyButton = document.getElementById('xy-button');
+
+    // listen for xy click
+    xyButton.addEventListener('click', e => {
+        const xField = document.getElementById('modal-filter-x').value;
+        const yFiled = document.getElementById('modal-filter-y').value;
+
+        index.resetModal();
+        index.controlModal(res.name, xField, yFiled);
+    });
+
+};
+
+const renderModalFilterList = (e) => {
+    const divX = document.getElementById('modal-filter-x');
+    const divY = document.getElementById('modal-filter-y');
+
+    // console.log(e, 'what goes into the x?');
+
+    e.forEach(function (e) {
+        const markup = `
+    <option>${e}</option>
+    `;
+
+        divX.insertAdjacentHTML('beforeend', markup);
+        divY.insertAdjacentHTML('beforeend', markup);
+    })
 };
 
 export const renderResults = (results, page = 1, resPerPage = 10) => {
-    results.forEach(renderResult); 
+    results.forEach(renderResult);
 };
 
 export const renderFilters = results => {

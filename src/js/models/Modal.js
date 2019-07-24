@@ -17,8 +17,7 @@ export default class Modal {
             'property_y': this.y
         };
 
-        console.log('Searching database with the following modal criteria:')
-        console.log(options)
+        console.log(options, 'Searching database with the following modal criteria:')
 
         try {
             const result = await axios.post(apiURL, options);

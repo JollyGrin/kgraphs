@@ -4,6 +4,7 @@ import Modal from './models/Modal';
 import { elements, stateFilters } from './views/base';
 import * as searchView from './views/searchView';
 import axios from 'axios';
+import * as spin from './views/spin.js';
 
 const state = {
     filter: {
@@ -14,31 +15,33 @@ const state = {
     }
 };
 
-const init = async () => {
+const init = () => {
     // searchView.clearResults();
     elements.searchTerm.innerHTML = '...';
     console.log('Last Update applied on July 23 @ 15.27');
+
 };
 init();
 
-const controlModal = async (res) => {
+export const controlModal = async (res, x = 'noi_yield_apg', y = 'quality_grade_apg') => {
     const name = res;
-    const y = 'quality_grade_apg';
-    const x = 'noi_yield_apg';
-    
+
     // new modal object and add to state
     state.modal = new Modal(name, x, y);
 
+    searchView.toggleModal();
+
+    spin.renderSpinner();
+
     // get results from modal search and add to state.modal.result
+    
+    
     await state.modal.getResults();
-
-    // console.log(state.modal, 'test modal');
-    // console.log(state.modal.result, 'test result');
-
 
 
     await searchView.renderModal(state.modal);
-    searchView.toggleModal();
+
+    spin.rmSpinner();
 
 };
 
@@ -60,6 +63,8 @@ const controlSearch = async () => {
     elements.searchTerm.innerHTML = `${searchView.getInput()}`; // add search term in searching for:
     elements.searchTerm.innerHTML = searchView.getInput(); // add search term in searching for:
 
+    spin.renderSpinner('results');
+
     // search
     await state.search.getResults();
 
@@ -67,6 +72,7 @@ const controlSearch = async () => {
     // render results to ui
     searchView.renderResults(state.search.result.slice(0, 9)); //renders first 10 results
     searchView.clearInput();
+    spin.rmSpinner();
 
 };
 
@@ -85,7 +91,6 @@ const controlFilter = () => {
     );
 
     // render filter to tags
-    console.log(state.filter, 'logging filters')
     searchView.renderFilters(state.filter);
 
 };
@@ -116,7 +121,7 @@ elements.filterButton.addEventListener('click', e => {
 elements.resultsPanel.addEventListener('click', e => {
     const titleDiv = e.target.closest('.result__title');
     const title = titleDiv.innerHTML;
-    
+
     controlModal(title);
 });
 
@@ -124,12 +129,16 @@ elements.resultsPanel.addEventListener('click', e => {
 elements.modalID.addEventListener('click', e => {
     const del = e.target.closest('.delete');
 
-    if(del) {
-        searchView.toggleModal();
-        searchView.clearModal();
-        state.modal = '';
+    if (del) {
+        resetModal();
     }
 });
+
+export const resetModal = () => {
+    searchView.toggleModal();
+    searchView.clearModal();
+    state.modal = '';
+};
 
 // remove filter on clicking x inside the tag
 elements.filterTagDiv.addEventListener('click', e => {

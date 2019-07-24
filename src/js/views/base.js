@@ -11,7 +11,8 @@ export const elements = {
     filterFMin: document.getElementById('filter__min'),
     filterFMax: document.getElementById('filter__max'),
     modalID: document.getElementById('modal-id'),
-    titleOfResult: document.querySelector('result__title')
+    titleOfResult: document.querySelector('result__title'),
+    spinner: document.querySelector('.spinner')
 };
 
 // export const stateFilters = {
